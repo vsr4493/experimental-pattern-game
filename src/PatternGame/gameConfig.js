@@ -17,4 +17,4 @@ const generatePatterns = (levelCount, options = ['#c0392b', '#2980b9', '#27ae60'
   };
 }
 
-export const levelConfig = generatePatterns(2);
+export const levelConfig = generatePatterns(10);
