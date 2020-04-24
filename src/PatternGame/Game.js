@@ -11,14 +11,14 @@ const waitFor = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
 // Time in ms
 const HIGHLIGHT_TIME = 300;
-const STAGE_TRANSITION_TIME = 1500;
+const STAGE_TRANSITION_TIME = 2500;
 
 const messagesByStage = {
   ready: "Whenever you're ready, click start!",
   showing_pattern: "Showing patterns! Pay attention!",
   waiting_for_input: "Please enter the pattern",
   level_complete: "The level is complete! Moving to the next level!",
-  level_failed: "Uh oh, this is the wrong sequence. Off we go to level 1",
+  level_failed: "Uh oh, this is the wrong sequence. Back to level 1 you go!",
   game_complete: "The game is complete, You've won!",
 };
 
@@ -41,7 +41,6 @@ const PatternView = ({
   onClick,
 }) => {
   const sectionSize = 360 / colorCodes.length;
-  console.log(highlightedCode);
   return (
     <div
       css={css`
@@ -109,8 +108,10 @@ const Message = ({ text }) => {
     <p
       css={css`
         color: #fff;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
+        margin: 12px 0px;
+        text-align: center;
       `}
     >
       {text}
@@ -236,6 +237,7 @@ const Game = ({}) => {
       <h2
         css={css`
           color: #fff;
+          font-size: 21px;
         `}
       >
         Current Level: {state.level}
@@ -257,7 +259,7 @@ const Game = ({}) => {
           justifycontent: center;
         `}
       >
-        {stage !== stages.game_complete &&
+        {stage === stages.ready &&
           <Button
             disabled={stage !== stages.ready}
             onClick={
