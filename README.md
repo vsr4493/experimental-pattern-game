@@ -1,6 +1,12 @@
-## Pattern Game
+# Steps to run
 
-Core: https://drive.google.com/file/d/16-cNMcI508g3O8a7rkX784DmM_P4dfrH/view?ts=5ea2b653
+Run the following command: 
+```npm ci && npm run start```
+
+Note: Configuration can be tweaked in src/PatternGame/gameConfig.js
+
+
+## Pattern Game
 
 ### Stack
 Repo was setup using create-react-app
