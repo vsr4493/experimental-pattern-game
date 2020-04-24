@@ -256,7 +256,13 @@ const Game = ({}) => {
           padding: 24px;
           display: flex;
           align-items: center;
-          justifycontent: center;
+          justify-content: center;
+          left: 0; bottom: 0;
+          position: fixed;
+          width: 100%;
+          background-color: rgba(0,0,0,.5);
+          text-align: center;
+          min-height: 100px;
         `}
       >
         {stage === stages.ready &&
