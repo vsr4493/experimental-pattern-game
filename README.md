@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Pattern Game
 
-## Available Scripts
+Core: https://drive.google.com/file/d/16-cNMcI508g3O8a7rkX784DmM_P4dfrH/view?ts=5ea2b653
 
-In the project directory, you can run:
+### Stack
+Repo was setup using create-react-app
+Packages: react, react-dom, emotionJs
 
-### `yarn start`
+### Game Logic
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Core components: 
+- PatternView: Render the pattern -> Accepts a list of patterns and the pattern currently highlighted. Can be controlled when used while game is 'waiting_for_input'.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+#### Flow
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+States: loading, waiting_for_input, level_complete, level_failed, game_complete
 
-### `yarn build`
+- The game will initiate with a state of 'loading', we'll load the current configuration and initialize the state, moving to 'ready'.
+- For the current level, we will render the pattern using a stagger based setTimeout. For this we can use a util function which will generate a promise that resolves in a given time. As we move through all promises we can render the current pattern.
+- For the current pattern length, for eg: ['R', 'G', 'B', 'Y', 'R', 'G']
+- User's actions will be recorded in the current state, and pushed to a level history, with the level recorded separately.
+- 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+state: {
+  level: 1,
+  currentSequence: [],
+  remainingKeys: currentSequence.length, // Init
+}
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+onSelectKey() {
+  // Check if the index at length - remainingKeys is same as the selected key in the current sequence
+  // If its not, reset the level
+  // If it is and we have reached the last key, show success and move to next level
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+moveToLevel(level) {
+  // Show loading state
+  // Fetch level data
+  // Reset state -> { level, currentSequence: levelData.sequence, remainingKeys: levelData.sequence.length }
+  // Set game to ready state
+}
