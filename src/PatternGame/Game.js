@@ -186,7 +186,7 @@ const Game = ({}) => {
       const nextCursor = cursor + 1;
 
       // We're fine, lets move on
-      // Reduce the cursor by one, and if the next < 0, then we set to level complete and move to level 2
+      // Move the cursor, and if needed, move up a level
       // Alternatively, can also be done with a useEffect on the cursor state (This would need us to allow -1 as part of the invariant)
       const isLevelComplete = nextCursor >= currentSequence.length;
       // Level is 1 indexed
